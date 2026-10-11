@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+body { @apply bg-ink text-fg font-sans antialiased; }
+section[id] { scroll-margin-top: 4.5rem; }
+
+:focus-visible { outline: 2px solid theme("colors.accent"); outline-offset: 3px; border-radius: 4px; }
+::selection { background: rgba(127, 178, 255, 0.3); }
+
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium transition-colors duration-200;
+}
+.btn-primary { @apply bg-accent text-ink hover:bg-white; }
+.btn-ghost { @apply border border-line text-fg hover:border-accent hover:text-accent; }
+.btn[aria-disabled="true"] { @apply cursor-not-allowed opacity-45 hover:border-line hover:text-fg; }
+
+.chip { @apply rounded border border-line bg-panel px-2.5 py-1 text-[13px] text-fg/90; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.reveal-in { opacity: 1; transform: none; }
+
+  .hero-line { display: block; overflow: hidden; }
+  .hero-line > span { display: block; transform: translateY(105%); animation: rise .8s cubic-bezier(.2,.7,.2,1) forwards; }
+  .hero-fade { opacity: 0; animation: fade .8s ease forwards; }
+
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+@keyframes rise { to { transform: none; } }
+@keyframes fade { to { opacity: 1; } }
